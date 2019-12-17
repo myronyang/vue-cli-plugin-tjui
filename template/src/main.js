@@ -16,7 +16,6 @@ Vue.use(Vuex){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 {{#tjui}}
 import TJUI from 'taojinui'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import 'taojinui/packages/theme-chalk/lib/index.css'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 Vue.use(TJUI){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/tjui}}
 
