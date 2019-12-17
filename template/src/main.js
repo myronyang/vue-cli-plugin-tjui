@@ -17,7 +17,6 @@ import Tjui from 'taojinui'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import 'taojinui/packages/theme-chalk/lib/index.css'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 Vue.use(Tjui){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/tjui}}
-
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
