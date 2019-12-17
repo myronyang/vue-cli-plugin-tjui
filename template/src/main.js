@@ -12,9 +12,7 @@ import router from './router'
 import Vuex from 'vuex'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import store from  './store/index'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 Vue.use(Vuex){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-{{/vuex}}
-
-{{#tjui}}
+{{/vuex}}{{#tjui}}
 import Tjui from 'taojinui'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import 'taojinui/packages/theme-chalk/lib/index.css'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 Vue.use(Tjui){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
