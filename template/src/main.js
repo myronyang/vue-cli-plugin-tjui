@@ -15,9 +15,9 @@ Vue.use(Vuex){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/vuex}}
 
 {{#tjui}}
-import TJUI from 'taojinui'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Tjui from 'taojinui'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import 'taojinui/packages/theme-chalk/lib/index.css'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-Vue.use(TJUI){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+Vue.use(Tjui){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/tjui}}
 
 Vue.config.productionTip = false
@@ -28,6 +28,9 @@ new Vue({
   {{#router}}
   router,
   {{/router}}
+  {{#vuex}}
+  store,
+  {{/vuex}}
   {{#if_eq build "runtime"}}
   render: h => h(App)
   {{/if_eq}}
