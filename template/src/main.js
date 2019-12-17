@@ -8,11 +8,17 @@ import App from './App'
 import router from './router'
 {{/router}}
 
-{{#vuex}}  //vuex为true的时候就会写入这些
+{{#vuex}}
 import Vuex from 'vuex'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import store from  './store/store'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import store from  './store/index'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 Vue.use(Vuex){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/vuex}}
+
+{{#tjui}}
+import TJUI from 'taojinui'
+import 'taojinui/packages/theme-chalk/lib/index.css'
+Vue.use(TJUI)
+{{/tjui}}
 
 Vue.config.productionTip = false
 
