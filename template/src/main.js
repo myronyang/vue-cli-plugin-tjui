@@ -14,6 +14,10 @@ import store from  './store/index'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 Vue.use(Vuex){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/vuex}}
 
+{{#tjui}}
+// ssss
+{{/tjui}}
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
