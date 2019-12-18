@@ -7,11 +7,8 @@ import App from './App'
 {{#router}}
 import router from './router'
 {{/router}}
-
 {{#vuex}}
-import Vuex from 'vuex'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import store from  './store/index'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-Vue.use(Vuex){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/vuex}}
 
 {{#tjui}}
@@ -21,8 +18,18 @@ Vue.use(Tjui)
 {{/tjui}}
 
 {{#axios}}
-import { request } from './assets/script/request'
-Vue.prototype.$request = request
+import Request from './assets/script/request'
+Vue.prototype.$request = new Request({
+  // 具体配置查看文档
+  // 开发环境基本地址
+  devBaseUrl: '',
+  // 生产环境基本地址
+  onlineBaseUrl: '',
+  // 错误提醒弹框
+  errCallback(msg) {
+    Vue.$toast(msg)
+  }
+})
 {{/axios}}
 
 Vue.config.productionTip = false

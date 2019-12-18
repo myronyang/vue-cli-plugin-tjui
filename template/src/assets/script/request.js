@@ -1,60 +1,69 @@
 import axios from 'axios'
-import router from '@/router/index'
 import qs from "qs";
-import * as Utils from './utils'
-import { Toast } from 'taojinui'
 
 class Request {
 
   constructor(options) {
-
-    if (process.env.NODE_ENV === 'development') {
-      axios.defaults.baseURL = '/develop/api/'
-    } else {
-      axios.defaults.baseURL = 'https://atmosphere.glinsunai.com/api/'
-    }  
-
-    axios.interceptors.request.use((config) => {
-      // 处理请求数据，如添加Header信息等
-      if (typeof config.data !== 'string') {
-        config.data = qs.stringify(config.data)
+    const defaultConfig = {
+      timeout: 1000,
+      contenType: 'from',
+      resSuccessCode: 200,
+      resDataKey: 'data',
+      resMesKey: 'msg',
+      errCallback(msg) {
+        alert(msg)
       }
-      const _token = Utils.getStore('AQFS_TOKEN')
-      if (_token) {
-       config.headers.Authorization = 'Bearer ' + _token
+    }
+    this.options = Object.assign(defaultConfig, options)
+    this.init()
+  }
+
+  init() {
+    const { options } = this
+    this.instance = axios.create({
+      baseURL: process.env.NODE_ENV === 'development' ? options.devBaseUrl : options.onlineBaseUrl,
+      timeout: options.timeout
+    })
+    this.request()
+    this.response()
+  }
+
+  request() {
+    this.instance.interceptors.request.use(config => {
+      const { parameters } = this
+      parameters.request && parameters.request(config)
+      if (this.options.contenType === 'from') {
+        config.data = qs.stringify(config.data)
       }
       return config
     })
+  }
 
-    axios.interceptors.response.use((response) => {
-
+  response() {
+    this.instance.interceptors.response.use(response => {
+      const data = response.data
+      const { options, parameters } = this
+      parameters.response && parameters.response(response)
       return new Promise((resolve, reject) => {
-        // 储层TOKEN
-        if (response.data.code === 1) {
-          resolve(response.data.data)
+        if (data.code === options.resSuccessCode) {
+          resolve(data[options.resDataKey])
         } else {
-          reject(response.data)
-          if (response.data.msg === '暂无O3数据') return
-          if (response.data.msg.search('重新登录') > 0) {
-            router.push("/login");
-          }
-          Toast.error(response.data.msg)
+          options.errCallback(data[options.resMesKey])
+          reject(data)
         }
       })
-
-    }, (error) => {
-      return Promise.reject(error)
     })
   }
 
-  post(url, data, config) {
-    return axios.post(url, data, config)
+  post(parameters) {
+    this.parameters = parameters
+    return this.instance.post(parameters.url, parameters.params)
   }
 
-  get(url, data, config) {
-    return axios.get(url, { params: data }, config)
+  get(parameters) {
+    return this.instance.get(parameters.url, { params: parameters.params })
   }
 
 }
 
-export const request = new Request()
+export default Request
