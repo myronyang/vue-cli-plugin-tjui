@@ -15,7 +15,9 @@ Vue.use(Vuex){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/vuex}}
 
 {{#tjui}}
-// ssss
+import Tjui from 'taojinui'
+import 'taojinui/packages/theme-chalk/lib/index.css'
+Vue.use(Tjui)
 {{/tjui}}
 
 Vue.config.productionTip = false
