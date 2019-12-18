@@ -1,6 +1,6 @@
 <template>
    <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>Welcome to Your Vue.js App</h1>
     <tj-button plain round>Tjui docs</tj-button>
 
     <h2>Ecosystem</h2>
@@ -24,11 +24,6 @@
 <script>
 export default {
   name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
 }
 </script>
 
