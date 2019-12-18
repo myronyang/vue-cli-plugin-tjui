@@ -69,6 +69,11 @@ module.exports = {
         },
       ],
     },
+    tjui: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Install tjui?',
+    },
     router: {
       when: 'isNotTest',
       type: 'confirm',
