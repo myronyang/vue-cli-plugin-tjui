@@ -74,6 +74,11 @@ module.exports = {
       type: 'confirm',
       message: 'Install tjui?',
     },
+    axios: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Install axios?',
+    },
     router: {
       when: 'isNotTest',
       type: 'confirm',
@@ -180,7 +185,8 @@ module.exports = {
     'test/unit/setup.js': "unit && runner === 'jest'",
     'test/e2e/**/*': 'e2e',
     'src/router/**/*': 'router',
-    'src/store/index.js': 'vuex',
+    'src/store/**/*': 'vuex',
+    'src/assets/script/request.js': 'axios',
   },
   complete: function(data, { chalk }) {
     const green = chalk.green

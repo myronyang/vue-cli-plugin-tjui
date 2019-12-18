@@ -20,6 +20,11 @@ import 'taojinui/packages/theme-chalk/lib/index.css'
 Vue.use(Tjui)
 {{/tjui}}
 
+{{#axios}}
+import { request } from './assets/script/request'
+Vue.prototype.$request = request
+{{/axios}}
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
