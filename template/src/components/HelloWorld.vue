@@ -5,7 +5,7 @@
     <tj-button plain round>Tjui docs</tj-button>
     {{/tjui}}
 
-    <h2 lass="pt_10 bd_t_1">Ecosystem</h2>
+    <h2 class="pt_10 bd_t_1">Ecosystem</h2>
     <ul>
       <li>
         <a href="http://router.vuejs.org/" target="_blank">vue-router</a>
