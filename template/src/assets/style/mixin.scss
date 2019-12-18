@@ -1,0 +1,57 @@
+/* 绝对定位 */
+@mixin fixed($left: 0, $top: 0, $zIndex: 9) {
+  position: fixed;
+  left: $left;
+  top: $top;
+  z-index: $zIndex;
+
+  @if $left==50% {
+    @if $top==50% {
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+/* 遮罩层 */
+@mixin cover($zIndex: 998) {
+  @include fixed(0, 0, $zIndex);
+  width: 100%;
+  height: 100%;
+  background: $color-grey-opacity;
+}
+
+/* 背景图 */
+@mixin backgroundImage($url, $size: cover) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: $size;
+}
+
+/* 段落超出隐藏 */
+@mixin ellipsis($line: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
+
+/* 隐藏滚动条 */
+@mixin hideScrollbar() {
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+/* 隐藏border */
+@mixin borderNone() {
+  &::before {
+    display: none;
+  }
+
+  &::after {
+    display: none;
+  }
+}

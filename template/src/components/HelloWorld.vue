@@ -5,7 +5,7 @@
     <tj-button plain round>Tjui docs</tj-button>
     {{/tjui}}
 
-    <h2>Ecosystem</h2>
+    <h2 lass="pt_10 bd_t_1">Ecosystem</h2>
     <ul>
       <li>
         <a href="http://router.vuejs.org/" target="_blank">vue-router</a>
@@ -31,6 +31,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "@/assets/style/variable.scss";
+@import "@/assets/style/mixin.scss";
+
 .hello {
   text-align: center;
   padding-top: 10%;
@@ -54,7 +57,7 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #9c27b0;
+  color: $color-default;
   font-size: 1.2rem;
 }
 </style>

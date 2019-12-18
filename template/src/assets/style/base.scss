@@ -1,6 +1,21 @@
+.bd_t_1,
+.bd_r_1,
+.bd_b_1,
+.bd_l_1 {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    transform-origin: 0 0;
+  }
+}
+
 .bd_t_1 {
   &::before {
-    border-top: 1px solid #ebebeb;
+    border-top: 1PX solid $color-row-line;
     left: 0;
     top: 0;
     width: 100%;
@@ -8,9 +23,9 @@
   }
 }
 
-.db_r_1 {
+.bd_r_1 {
   &::after {
-    border-right: 1px solid #ebebeb;
+    border-right: 1PX solid $color-row-line;
     top: 0;
     right: 0;
     height: 100%;
@@ -19,10 +34,8 @@
 }
 
 .bd_b_1 {
-  border-bottom: 1px solid #f7f7f7;
-
   &::after {
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid $color-row-line;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -30,9 +43,9 @@
   }
 }
 
-.db_l_1 {
+.bd_l_1 {
   &::before {
-    border-left: 1px solid #ebebeb;
+    border-left: 1px solid $color-row-line;
     top: 0;
     left: 0;
     height: 100%;
@@ -48,7 +61,7 @@
     }
   }
 
-  .db_r_1 {
+  .bd_r_1 {
     &::after {
       height: 200%;
       transform: scale(0.5) translateZ(0);
@@ -62,7 +75,7 @@
     }
   }
 
-  .db_l_1 {
+  .bd_l_1 {
     &::before {
       height: 200%;
       transform: scale(0.5) translateZ(0);
@@ -78,7 +91,7 @@
     }
   }
 
-  .db_r_1 {
+  .bd_r_1 {
     &::after {
       height: 300%;
       transform: scale(0.333) translateZ(0);
@@ -92,7 +105,7 @@
     }
   }
 
-  .db_l_1 {
+  .bd_l_1 {
     &::before {
       height: 300%;
       transform: scale(0.333) translateZ(0);
@@ -100,112 +113,54 @@
   }
 }
 
-.mt_5 {
-  margin-top: 5px;
+@function setSpace($i, $is) {
+  @if ($is == 1) {
+    @return $i*$space-base;
+  } @else {
+    @return #{$i*$space-base}$unit-base;
+  }
 }
 
-.mr_5 {
-  margin-right: 5px;
+@for $i from 1 through 3 {
+
+  @each $name,
+  $value in (ml, left),
+  (mt, top),
+  (mr, right),
+  (mb, bottom) {
+    .#{$name}_#{setSpace($i, 1)} {
+      margin-#{$value}: setSpace($i, 0);
+    }
+  }
+
+  @each $name,
+  $value in (pl, left),
+  (pt, top),
+  (pr, right),
+  (pb, bottom) {
+    .#{$name}_#{setSpace($i, 1)} {
+      padding-#{$value}: setSpace($i, 0);
+    }
+  }
+
+  .m_lr_#{setSpace($i, 1)} {
+    margin-left: setSpace($i, 0);
+    margin-right: setSpace($i, 0);
+  }
+
+  .p_lr_#{setSpace($i, 1)} {
+    padding-left: setSpace($i, 0);
+    padding-right: setSpace($i, 0);
+  }
 }
 
-.mb_5 {
-  margin-bottom: 5px;
-}
-
-.ml_5 {
-  margin-left: 5px;
-}
-
-.mt_10 {
-  margin-top: 10px;
-}
-
-.mr_10 {
-  margin-right: 10px;
-}
-
-.mb_10 {
-  margin-bottom: 10px;
-}
-
-.ml_10 {
-  margin-left: 10px;
-}
-
-.mt_15 {
-  margin-top: 15px;
-}
-
-.mr_15 {
-  margin-right: 15px;
-}
-
-.mb_15 {
-  margin-bottom: 15px;
-}
-
-.ml_15 {
-  margin-left: 15px;
-}
-
-.pt_5 {
-  padding-top: 5px;
-}
-
-.pr_5 {
-  padding-right: 5px;
-}
-
-.pb_5 {
-  padding-bottom: 5px;
-}
-
-.pl_5 {
-  padding-left: 5px;
-}
-
-.pt_10 {
-  padding-top: 10px;
-}
-
-.pr_10 {
-  padding-right: 10px;
-}
-
-.pb_10 {
-  padding-bottom: 10px;
-}
-
-.pl_10 {
-  padding-left: 10px;
-}
-
-.pl_15 {
-  padding-left: 15px;
-}
-
-.pt_15 {
-  padding-top: 15px;
-}
-
-.pr_15 {
-  padding-right: 15px;
-}
-
-.pb_15 {
-  padding-bottom: 15px;
-}
-
-.text_l {
-  text-align: left;
-}
-
-.text_c {
-  text-align: center;
-}
-
-.text_r {
-  text-align: right;
+@each $name,
+$value in (l, left),
+(c, center),
+(r, right) {
+  .text_#{$name} {
+    text-align: $value;
+  }
 }
 
 .fl_left {
@@ -220,48 +175,28 @@
   position: relative;
 }
 
-.m_lr_10 {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.m_lr_15 {
-  margin-left: 15px;
-  margin-right: 15px;
-}
-
-.p_lr_10 {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.p_lr_15 {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
 .hidden {
   overflow: hidden;
 }
 
 .c_black {
-  color: #000;
+  color: $color-black;
 }
 
 .c_white {
-  color: #fff;
+  color: $color-white;
 }
 
 .c_gray {
-  color: #999;
+  color: $color-light-grey;
 }
 
 .bg_gray {
-  background: #f5f5f5;
+  background: $color-background;
 }
 
 .bg_white {
-  background: #fff;
+  background: $color-white;
 }
 
 .clearfix:after {
