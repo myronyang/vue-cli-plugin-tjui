@@ -27,7 +27,11 @@ Vue.prototype.$request = new Request({
   onlineBaseUrl: '',
   // 错误提醒弹框
   errCallback(msg) {
+    {{#tjui}}
     Vue.$toast(msg)
+    {{else}}
+    // console.log(msg)
+    {{/tjui}}
   }
 })
 {{/axios}}
