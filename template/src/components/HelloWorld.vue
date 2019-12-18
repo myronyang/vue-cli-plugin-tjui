@@ -1,7 +1,9 @@
 <template>
    <div class="hello">
     <h1>Welcome to Your Vue.js App</h1>
+    {{#tjui}}
     <tj-button plain round>Tjui docs</tj-button>
+    {{/tjui}}
 
     <h2>Ecosystem</h2>
     <ul>
