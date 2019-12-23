@@ -61,6 +61,7 @@ class Request {
   }
 
   get(parameters) {
+    this.parameters = parameters
     return this.instance.get(parameters.url, { params: parameters.params })
   }
 

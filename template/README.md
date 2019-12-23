@@ -1,36 +1,42 @@
-# {{ name }}
+# Tjui-template
 
-> {{ description }}
+## Style
 
-## Build Setup
+- reset.scss 初始化样式
+- base.scss 常用样式类
+- variable.scss 全局常用变量
+- mixin.scss 常用样式方法
 
-``` bash
-# install dependencies
-npm install
+## Script 
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-{{#unit}}
-
-# run unit tests
-npm run unit
-{{/unit}}
-{{#e2e}}
-
-# run e2e tests
-npm run e2e
-{{/e2e}}
-{{#if_or unit e2e}}
-
-# run all tests
-npm test
-{{/if_or}}
+### request.js axios封装
+``` js
+// 实例赋值给Vue原型，便于全局调用
+Vue.prototype.$request = new Request({
+  // 必填，开发环境基本地址
+  devBaseUrl: '',
+  // 必填，生产环境基本地址
+  onlineBaseUrl: '',
+  // 选填, 请求数据类型，默认from
+  // json格式为 'json'
+  // from格式为 'from'
+  contenType: 'from'
+  // 选填, 指定请求超时的毫秒数
+  // 默认值 1000
+  timeout: 1000,
+  // 选填, 请求后台返回数据key
+  // 默认值 'data'
+  resDataKey: 'data',
+  // 选填, 请求后台返回信息key
+  // 默认值 'msg'
+  resMesKey: 'msg',
+  // 选填, 错误提醒弹框
+  // 默认使用alert()提示
+  errCallback(msg) {
+    // msg为借口错误时返回的错误信息
+    Vue.$toast(msg)
+  }
+})
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### utils.js 常用工具函数
