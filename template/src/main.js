@@ -10,10 +10,8 @@ import router from './router'
 {{#vuex}}
 import store from  './store/index'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/vuex}}
-
 {{#tjui}}
 import Tjui from 'taojinui'
-import 'taojinui/packages/theme-chalk/lib/index.css'
 Vue.use(Tjui)
 {{/tjui}}
 

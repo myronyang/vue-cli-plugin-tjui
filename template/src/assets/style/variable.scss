@@ -33,3 +33,7 @@ $color-col-line: #f5f5f5;
 /* space */
 $space-base: 5;
 $unit-base: px;
+
+{{#tjui}}
+@import "taojinui/packages/theme-chalk/src/index.scss";
+{{/tjui}}
